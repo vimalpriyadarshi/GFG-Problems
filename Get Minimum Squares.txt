@@ -1,0 +1,30 @@
+/*
+https://practice.geeksforgeeks.org/problems/get-minimum-squares0538/1
+https://www.linkedin.com/in/vimal-priyadarshi-ab8062263/
+*/
+int rec(int sq[],int n,vector<int> &dp)
+	{
+	    if(dp[n]!=-1)
+	    return dp[n];
+	    
+	    int mn=INT_MAX;
+	    if(n==0) 
+	    return dp[n]=0;
+	    
+	    for(int i=1;i<=100;i++)
+	    {
+	        if(n>=sq[i])
+	        mn=min(mn,1+rec(sq,n-sq[i],dp));
+	    }
+	   return dp[n]=mn;
+	}
+	int MinSquares(int n)
+	{
+	    int sq[101];
+	    vector<int> dp(n+1,-1);
+	    for(int i=0;i<=100;i++)
+	    {
+	        sq[i]=(i)*(i);
+	    }
+	   return rec(sq,n,dp);
+	}
